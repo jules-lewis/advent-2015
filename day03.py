@@ -66,28 +66,29 @@ start = time.perf_counter()
 with open('day03.txt') as f:
     data = f.read().rstrip()
 
-#I think we're going to use a dictionary, keyed on Santa's X and Y co-ords
-santaX = 0
-santaY = 0
-houses = {}
-
+#We're going to use a dictionary, keyed on Santa's X and Y co-ords
 def incrementHouse(x, y, houses):
     if (x, y) in houses:
         houses[(x, y)] += 1
     else:
         houses[(x, y)] = 1
 
+#Generalised, so we can move more that one character in Part 2
 def calculateMove(x, y, move):
     if move == '^':
-        return x, y + 1
+        y += 1
     elif move == 'v':
-        return x, y - 1
+        y -= 1
     elif move == '>':
-        return x + 1, y
+        x += 1
     else:
-        return x - 1, y
+        x -= 1
+    return x, y
 
 #Part 1
+santaX = 0
+santaY = 0
+houses = {}
 incrementHouse(santaX, santaY, houses)
 for char in data:
     santaX, santaY = calculateMove(santaX, santaY, char)
@@ -102,16 +103,16 @@ robY = 0
 houses = {}
 incrementHouse(santaX, santaY, houses)
 incrementHouse(robX, robY, houses)
-moves = 0
+moveSanta = True
 for char in data:
-    moves += 1
-    #Odd moves are Santa, even are Robot
-    if (moves % 2) == 0:
-        robX, robY = calculateMove(robX, robY, char)
-        incrementHouse(robX, robY, houses)
-    else:
+    if moveSanta:
         santaX, santaY = calculateMove(santaX, santaY, char)
         incrementHouse(santaX, santaY, houses)
+        moveSanta = False
+    else:
+        robX, robY = calculateMove(robX, robY, char)
+        incrementHouse(robX, robY, houses)
+        moveSanta = True
 print(len(houses))
 
 
