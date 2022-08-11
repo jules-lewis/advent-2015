@@ -62,7 +62,7 @@ start = time.perf_counter()
 
 #Load the puzzle data
 with open('day02.txt') as f:
-    data = [line.rstrip() for line in f]
+    data = [line for line in f]
 
 #Parts 1 and 2 combined
 total_ribbon = 0

@@ -59,10 +59,10 @@ start = time.perf_counter()
 
 #Load the puzzle data
 with open('day01.txt') as f:
-    data = f.read().rstrip()
+    data = f.read()
 
 #Part 1: Seems the simplest way to calculate the floors
-floor = 0 + data.count('(') -  + data.count(')')
+floor = data.count('(') - data.count(')')
 print(str(floor))
 
 #Part 2: Feels like we need to step through the data
