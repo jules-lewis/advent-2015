@@ -62,24 +62,21 @@ start = time.perf_counter()
 
 #Load the puzzle data
 with open('day02.txt') as f:
-    data = [line for line in f]
 
-#Parts 1 and 2 combined
-total_ribbon = 0
-total_area = 0
-for box in data:
+    total_ribbon = 0
+    total_area = 0
 
-    #Sorting seems to be the easiest way of identifying the smallest 2 sides
-    sides = sorted([int(i) for i in box.split('x')])
-    l, w, h = sides
+    for box in f:
 
-    area = (2 * l * w) + (2 * l * h) + (2 * w * h)
-    extra = (l * w)
-    total_area += (area + extra)
+        l, w, h = sorted(map(int, box.split('x')))
 
-    bow = l * w * h
-    ribbon = (2 * l) + (2 * w)
-    total_ribbon += (bow + ribbon)
+        area = (2 * l * w) + (2 * l * h) + (2 * w * h)
+        extra = (l * w)
+        total_area += (area + extra)
+
+        bow = l * w * h
+        ribbon = (2 * l) + (2 * w)
+        total_ribbon += (bow + ribbon)
 
 print(total_area)
 print(total_ribbon)
