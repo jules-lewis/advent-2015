@@ -51,8 +51,6 @@ wrap the present plus 1*1*10 = 10 feet of ribbon for the bow, for a total of
 
 How many total feet of ribbon should they order?
 
-
-
 '''
 
 import time
