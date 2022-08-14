@@ -7,4 +7,5 @@ My efforts to get through the entire Advent of Code puzzle series, starting from
 | 2   | [:page_with_curl:](https://dev.to/jules_lewis/advent-of-code-2015-day-2-ek4)  | [:alien:](https://www.reddit.com/r/adventofcode/comments/3v3w2f/day_2_solutions/) |
 | 3   | [:page_with_curl:](https://dev.to/jules_lewis/advent-of-code-2015-day-3-1lem) | [:alien:](https://www.reddit.com/r/adventofcode/comments/3v8roh/day_3_solutions/) |
 | 4   | [:page_with_curl:](https://dev.to/jules_lewis/advent-of-code-2015-day-4-392o) | [:alien:](https://www.reddit.com/r/adventofcode/comments/3vdn8a/day_4_solutions/) |
+| 5   | [:page_with_curl:](https://dev.to/jules_lewis/advent-of-code-2015-day-5-p46) | [:alien:](https://www.reddit.com/r/adventofcode/comments/3viazx/day_5_solutions/) |
 
