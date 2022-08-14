@@ -81,9 +81,9 @@ with open('day05.txt') as f:
 def count_vowels(s):
     return sum(map(s.count, "aeiou"))
 
-def check_forbidden(s, forbidden_list):
-    for word in forbidden_list:
-        if word in s:
+def check_forbidden(s):
+    for forbidden in ['ab', 'cd', 'pq', 'xy']:
+        if forbidden in s:
             return False
     return True
 
@@ -107,11 +107,10 @@ def check_duplicates(s):
     return False
 
 #Part 1
-forbidden = ['ab', 'cd', 'pq', 'xy']
 nice_strings = 0
 for s in data:
     if count_vowels(s) > 2:
-        if check_forbidden(s, forbidden):
+        if check_forbidden(s):
             if check_double(s):
                 nice_strings += 1
 print(str(nice_strings))
