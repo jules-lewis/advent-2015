@@ -52,7 +52,9 @@ def solve(key, zeroes):
 
 #Part 1
 print(solve('yzbqklnj', 5))
-print(solve('yzbqklnj', 6))
+
+#Part 2
+#print(solve('yzbqklnj', 6))
 
 #Timing: End
 end = time.perf_counter()
