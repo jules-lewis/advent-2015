@@ -73,16 +73,12 @@ with open('day06.txt') as f:
 #Parse an instruction from the data
 def parse_instruction(s):
     words = s.split()
-    if len(words) == 5:
-        _ = words.pop(0)  #Remove the word 'Turn'
-    instruction = words[0]
-    x1, y1 = map(int, words[1].split(','))
-    x2, y2 = map(int, words[3].split(','))
-    return instruction, sorted([x1, x2]), sorted([y1, y2])
+    instruction = words[-4]
+    x1, y1 = map(int, words[-3].split(','))
+    x2, y2 = map(int, words[-1].split(','))
+    return instruction, [x1, x2], [y1, y2]
 
 #PART 1
-
-#Instead of a 2D array of lights, lets use a dict
 lights = {}
 
 for line in data:
@@ -106,8 +102,6 @@ for line in data:
 print(sum(lights.values()))
 
 #PART 2
-
-#Instead of a 2D array of lights, lets use a dict
 lights = {}
 
 for line in data:
