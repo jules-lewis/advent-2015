@@ -82,10 +82,7 @@ def count_vowels(s):
     return sum(map(s.count, "aeiou"))
 
 def check_forbidden(s):
-    for forbidden in ['ab', 'cd', 'pq', 'xy']:
-        if forbidden in s:
-            return False
-    return True
+    return sum(map(s.count, ['ab', 'cd', 'pq', 'xy'])) == 0
 
 def check_double(s):
     for i in range(len(s)-1):
