@@ -72,11 +72,9 @@ with open('day06.txt') as f:
 
 #Parse an instruction from the data
 def parse_instruction(s):
-    words = s.split()
-    instruction = words[-4]
-    x1, y1 = map(int, words[-3].split(','))
-    x2, y2 = map(int, words[-1].split(','))
-    return instruction, [x1, x2], [y1, y2]
+    words = s.replace('turn ', '').replace(',', ' ').split()
+    instruction, x1, y1, _, x2, y2 = words
+    return instruction, [int(x1), int(x2)], [int(y1), int(y2)]
 
 #PART 1
 lights = {}
