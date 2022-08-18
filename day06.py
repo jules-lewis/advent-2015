@@ -66,23 +66,22 @@ import time
 #Timing: Start
 start = time.perf_counter()
 
+#Parse an instruction from the input file
+def parse_instruction(s):
+    words = s.replace('turn ', '').replace(',', ' ').split()
+    instruction, x1, y1, _, x2, y2 = words
+    return instruction, int(x1), int(x2), int(y1), int(y2)
+
 #Load the puzzle data
 with open('day06.txt') as f:
     data = [line.rstrip() for line in f]
 
-#Parse an instruction from the data
-def parse_instruction(s):
-    words = s.replace('turn ', '').replace(',', ' ').split()
-    instruction, x1, y1, _, x2, y2 = words
-    return instruction, [int(x1), int(x2)], [int(y1), int(y2)]
-
 #PART 1
 lights = {}
-
 for line in data:
-    instruction, x_range, y_range = parse_instruction(line)
-    for x in range(x_range[0], x_range[1]+1):
-        for y in range(y_range[0], y_range[1]+1):
+    instruction, x1, x2, y1, y2 = parse_instruction(line)
+    for x in range(x1, x2 + 1):
+        for y in range(y1, y2+1):
             key = (x, y)
             if instruction == 'off':
                 lights[key] = 0
@@ -96,31 +95,28 @@ for line in data:
                         lights[key] = 0
                 else:
                     lights[key] = 1
-
 print(sum(lights.values()))
 
 #PART 2
 lights = {}
-
 for line in data:
-    instruction, x_range, y_range = parse_instruction(line)
-    for x in range(x_range[0], x_range[1]+1):
-        for y in range(y_range[0], y_range[1]+1):
+    instruction, x1, x2, y1, y2 = parse_instruction(line)
+    for x in range(x1, x2 + 1):
+        for y in range(y1, y2+1):
             key = (x, y)
             if instruction == 'off':
                 if key in lights:
                     if lights[key] > 0:
                         lights[key] -= 1
-            elif instruction == 'on':
+            else:
+                if instruction == 'on':
+                    incr = 1
+                else: #toggle
+                    incr = 2
                 if key in lights:
-                    lights[key] += 1
+                    lights[key] += incr
                 else:
-                    lights[key] = 1
-            else: #toggle
-                if key in lights:
-                    lights[key] += 2
-                else:
-                    lights[key] = 2
+                    lights[key] = incr
 
 print(sum(lights.values()))
 
