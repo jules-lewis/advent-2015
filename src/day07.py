@@ -85,7 +85,7 @@ ly OR lz -> ma   becomes   wires{'ma': ['ly', 'OR', 'lz'}
 
 '''
 wires = {}
-with open('day07.txt') as f:
+with open('src/day07.txt') as f:
     for line in f:
         wire = line.rstrip().split(' -> ')
         wires[wire[-1]] =  wire[0].split()

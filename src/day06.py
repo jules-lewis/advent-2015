@@ -73,7 +73,7 @@ def parse_instruction(s):
     return instruction, int(x1), int(x2), int(y1), int(y2)
 
 #Load the puzzle data
-with open('day06.txt') as f:
+with open('src/day06.txt') as f:
     data = [line.rstrip() for line in f]
 
 #PART 1

@@ -59,7 +59,7 @@ import time
 start = time.perf_counter()
 
 #Load the puzzle data
-with open('day02.txt') as f:
+with open('src/day02.txt') as f:
 
     total_ribbon = 0
     total_area = 0

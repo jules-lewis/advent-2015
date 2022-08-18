@@ -75,7 +75,7 @@ import ast
 start = time.perf_counter()
 
 # Load the puzzle data
-with open('day08.txt') as f:
+with open('src/day08.txt') as f:
     lines = [line.rstrip() for line in f]
 
 #Part 1
