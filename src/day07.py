@@ -81,14 +81,14 @@ Load the puzzle data
 An instruction like "ly OR lz -> ma" will get split and stored
 in the wires{} dict indexed on the destination wire, e.g.:
 
-ly OR lz -> ma   becomes   wires{'ma': ['ly', 'OR', 'lz'}
+ly OR lz -> ma   becomes   wires{'ma': ['ly', 'OR', 'lz']}
 
 '''
 wires = {}
 with open('src/day07.txt') as f:
     for line in f:
         wire = line.rstrip().split(' -> ')
-        wires[wire[-1]] =  wire[0].split()
+        wires[wire[-1]] = wire[0].split()
 
 solved = {}
 
@@ -115,7 +115,7 @@ def solve(node):
             elif op == 'RSHIFT':
               n = solve(ops[0]) >> solve(ops[2])
             else: #    'LSHIFT':
-              n = solve(ops[0]) << solve(ops[2])
+              n = solve(ops[0]) << solve(ops[2]) & 65535
 
         solved[node] = n
 
@@ -128,8 +128,7 @@ print(part1_solution)
 #Part 2
 wires['b'] = [str(part1_solution)]
 solved = {}
-part2_solution = solve('a')
-print(part2_solution)
+print(solve('a'))
 
 #Timing: End
 end = time.perf_counter()
