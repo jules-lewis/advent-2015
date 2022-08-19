@@ -79,28 +79,22 @@ with open('src/day08.txt') as f:
     lines = [line.rstrip() for line in f]
 
 #Part 1
-length = 0
+total_length = 0
 
 for line in lines:
-    length += len(line)
-    line = ast.literal_eval(line)
-    length -= len(line)
+    total_length += len(line)
+    total_length -= len(ast.literal_eval(line))
 
-print(length)
+print(total_length)
 
-#Part 1
+#Part 2
 extras = 0
 
 for line in lines:
 
     #Account for adding quotes back onto the line
     extras +=2
-
-    #Now look for double quotes and backslashes
-    #I will be doing this based on ASCII codes
-    for c in line:
-        if ord(c) in [34, 92]:
-            extras += 1
+    extras += sum(map(line.count, ['"', '\\']))
 
 print(extras)
 
