@@ -47,7 +47,6 @@ import json
 #Timing: Start
 start = time.perf_counter()
 
-
 with open('src/day12.txt') as f:
     data = f.read()
 
@@ -72,7 +71,7 @@ def sum_numbers(node):
         return sum(map(sum_numbers, vals))
     
     else:
-        
+
         return 0
 
 j = json.loads(data)
