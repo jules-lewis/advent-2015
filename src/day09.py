@@ -66,10 +66,14 @@ with open('src/day09.txt') as f:
         distances[(t2, t1)] = int(dist)
         towns.extend([t1, t2])
 
-towns = list(set(towns))
+towns = set(towns)
 perms = list(permutations(towns))
 route_lengths = []
 for perm in perms:
+
+    #SLOW version, but neat looking
+    #route_length = sum(distances[(t1, t2)] for t1, t2 in zip(perm, perm[1:]))
+
     route_length = 0
     for town in range(len(perm)-1):
         route_length += distances[(perm[town], perm[town+1])]
