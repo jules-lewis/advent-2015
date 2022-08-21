@@ -11,4 +11,5 @@ My efforts to get through the entire Advent of Code puzzle series, starting from
 | 6   | [:page_with_curl:](https://dev.to/jules_lewis/advent-of-code-2015-day-6-i3e)  | [:alien:](https://www.reddit.com/r/adventofcode/comments/3vmltn/day_6_solutions/) |
 | 7   | [:page_with_curl:](https://dev.to/jules_lewis/advent-of-code-2015-day-7-35mp)  | [:alien:](https://www.reddit.com/r/adventofcode/comments/3vr4m4/day_7_solutions/) |
 | 8   | [:page_with_curl:](https://dev.to/jules_lewis/advent-of-code-2015-day-8-3jd9)  | [:alien:](https://www.reddit.com/r/adventofcode/comments/3vw32y/day_8_solutions/) |
+| 9   | [:page_with_curl:](https://dev.to/jules_lewis/aoc-2015-day-9-travelling-salesman-3f91) | [:alien:](https://www.reddit.com/r/adventofcode/comments/3w192e/day_9_solutions/) |
 
