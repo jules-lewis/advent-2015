@@ -72,7 +72,6 @@ reindeer = {}
 with open('src/day14.txt') as f:
     # Vixen can fly 19 km/s for 7 seconds, but then must rest for 124 seconds.
     for line in f:
-#        if len(line.strip()):
         words = line.split()  
         reindeer[words[0]] = [int(words[3]), int(words[6]), int(words[-2])]
 
