@@ -70,50 +70,31 @@ import time
 #Timing: Start
 start = time.perf_counter()
 
-'''
-We just want combinations that add up to 100. There are four ingredients, so
-the minimum three of them could add up to is 3 teaspoons, which means the
-fourth one must be 97. In other words, it's impossible to have a recipe with
-97 teaspoons of anything. Creating a list of possible recipes was a LOT
-quicker using naive loops than using itertools.product()!
-'''
-recipes = []
-for i in range(1, 98):
-    for j in range(1, 98):
-        if (i + j) < 100:
-            for k in range(1, 98):
-                if (i + j + k) < 100:
-                    recipes.append((i, j, k, 100 - (i + j + k)))
-
 # Load the puzzle data
-ingredients = []
+ing = [] #ingredients
 with open('src/day15.txt') as f:
-    # Frosting: capacity 4, durability -2, flavor 0, texture 0, calories 5
+    #Sample line: "Frosting: capacity 4, durability -2, flavor 0, texture 0, calories 5"
     for line in f:
-        parts = line.replace(':', ',').split(',')  
+        parts = line.split(',')
         qualities = []
-        for part in parts[1:]:
-            qualities.append(int(part.split()[1]))
-        ingredients.append(qualities)
+        for part in parts:
+            qualities.append(int(part.split()[-1]))
+        ing.append(qualities)
 
 max_score = 0
-for recipe in recipes:
-    score = cap = dur = fla = tex = cal = 0
-    for x in range(4):
-        ingredient = ingredients[x]
-        tsp = recipe[x]
-        cap += tsp * ingredient[0]
-        dur += tsp * ingredient[1]
-        fla += tsp * ingredient[2]
-        tex += tsp * ingredient[3]
-        cal += tsp * ingredient[4]
-    if cap > 0:
-        if dur > 0:
-            if fla > 0:
-                if tex > 0:
-                    if cal == 500:
-                        score = cap * dur * fla * tex
-                        max_score = max(score, max_score)
+for i in range(1, 100):
+    for j in range(1, 100-i):
+        for k in range(1, 100-i-j):
+            l = 100 - i - j - k
+            cap = (i * ing[0][0]) + (j * ing[1][0]) + (k * ing[2][0]) + (l * ing[3][0])
+            dur = (i * ing[0][1]) + (j * ing[1][1]) + (k * ing[2][1]) + (l * ing[3][1])
+            fla = (i * ing[0][2]) + (j * ing[1][2]) + (k * ing[2][2]) + (l * ing[3][2])
+            tex = (i * ing[0][3]) + (j * ing[1][3]) + (k * ing[2][3]) + (l * ing[3][3])
+            cal = (i * ing[0][4]) + (j * ing[1][4]) + (k * ing[2][4]) + (l * ing[3][4])
+            if (cap > 0) and (dur > 0) and (fla > 0) and (tex > 0):
+                if cal == 500:
+                    score = cap * dur * fla * tex
+                    max_score = max(score, max_score)
 print(max_score)
 
 #Timing: End
