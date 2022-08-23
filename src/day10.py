@@ -37,50 +37,33 @@ Now, starting again with the digits in your puzzle input, apply this process
 '''
 
 import time
+import re
 
-work_string = "3113322113"
 
 #Timing: Start
 start = time.perf_counter()
 
-def elves_look(look):
+work_string = "3113322113"
 
-    groups = []
-    buffer = ''
+#This will group all similar digits in a string
+#See this explained at https://regexr.com/6sdqb
+regex = re.compile(r'((\d)\2*)')
 
-    for c in look:
-        if buffer == '':
-            buffer += c
-        else:
-            if c == buffer[0]:
-                buffer += c
-            else:
-                groups.append(buffer)
-                buffer = c
-    
-    groups.append(buffer)
-    return groups
-
-def elves_say(say):
-
-    said = ''
-    for what in say:
-        said += str(len(what))
-        said += what[0]
-    return said
+def translate(work_string):
+    groups = [i[0] for i in regex.findall(work_string)]
+    new_string = ''
+    for group in groups:
+        new_string += str(len(group)) + group[0]
+    return new_string
 
 #Part 1 -- forty rounds
 for i in range(1,41):
-    elves_see = elves_look(work_string)
-    work_string = elves_say(elves_see)
-
+    work_string = translate(work_string)
 print(len(work_string))
 
 #Part 2 -- another ten rounds
 for i in range(1,11):
-    elves_see = elves_look(work_string)
-    work_string = elves_say(elves_see)
-
+    work_string = translate(work_string)
 print(len(work_string))
 
 #Timing: End
