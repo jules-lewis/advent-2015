@@ -39,7 +39,6 @@ Now, starting again with the digits in your puzzle input, apply this process
 import time
 import re
 
-
 #Timing: Start
 start = time.perf_counter()
 
@@ -57,12 +56,12 @@ def translate(work_string):
     return new_string
 
 #Part 1 -- forty rounds
-for i in range(1,41):
+for i in range(40):
     work_string = translate(work_string)
 print(len(work_string))
 
 #Part 2 -- another ten rounds
-for i in range(1,11):
+for i in range(10):
     work_string = translate(work_string)
 print(len(work_string))
 
