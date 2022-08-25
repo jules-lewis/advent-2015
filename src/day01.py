@@ -58,7 +58,7 @@ import time
 start = time.perf_counter()
 
 #Load the puzzle data
-with open('src/day01.txt') as f:
+with open('txt/day01.txt') as f:
     data = f.read()
 
 #Part 1: Seems the simplest way to calculate the floors

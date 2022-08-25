@@ -75,7 +75,7 @@ import time
 start = time.perf_counter()
 
 #Load the puzzle data
-with open('src/day05.txt') as f:
+with open('txt/day05.txt') as f:
     data = [line.rstrip() for line in f]
 
 def count_vowels(s):

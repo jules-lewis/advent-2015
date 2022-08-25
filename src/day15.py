@@ -72,7 +72,7 @@ start = time.perf_counter()
 
 # Load the puzzle data
 ing = [] #ingredients
-with open('src/day15.txt') as f:
+with open('txt/day15.txt') as f:
     #Sample line: "Frosting: capacity 4, durability -2, flavor 0, texture 0, calories 5"
     for line in f:
         parts = line.split(',')

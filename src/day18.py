@@ -232,7 +232,7 @@ for x in range(102):
 empty_grid = deepcopy(grid)
 
 # Load the puzzle data
-with open('src/day18.txt') as f:
+with open('txt/day18.txt') as f:
     row = 0
     for line in f:
         col = 0

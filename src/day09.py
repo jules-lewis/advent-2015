@@ -59,7 +59,7 @@ distances = {}
 towns = []
 
 # Load the puzzle data
-with open('src/day09.txt') as f:
+with open('txt/day09.txt') as f:
     for line in f:
         t1, _, t2, _, dist = line.split()
         distances[(t1, t2)] = int(dist)

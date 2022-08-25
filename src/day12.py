@@ -47,7 +47,7 @@ import json
 #Timing: Start
 start = time.perf_counter()
 
-with open('src/day12.txt') as f:
+with open('txt/day12.txt') as f:
     data = f.read()
 
 #Part 1

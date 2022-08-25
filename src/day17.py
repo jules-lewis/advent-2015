@@ -44,7 +44,7 @@ import itertools
 start = time.perf_counter()
 
 # Load the puzzle data
-with open('src/day17.txt') as f:
+with open('txt/day17.txt') as f:
     containers = [int(line) for line in f]
 
 target = 150

@@ -81,7 +81,7 @@ happiness = {}
 people = []
 
 # Load the puzzle data
-with open('src/day13.txt') as f:
+with open('txt/day13.txt') as f:
     # "Mallory would lose 99 happiness units by sitting next to George."
     for line in f:
         line = line.replace('lose ', '-').replace('gain ', '')[:-2]

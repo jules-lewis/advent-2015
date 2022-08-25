@@ -63,7 +63,7 @@ import time
 start = time.perf_counter()
 
 #Load the puzzle data
-with open('src/day03.txt') as f:
+with open('txt/day03.txt') as f:
     data = f.read().rstrip()
 
 #We're going to use a dictionary, keyed on Santa's X and Y co-ords

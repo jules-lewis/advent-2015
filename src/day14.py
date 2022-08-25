@@ -69,7 +69,7 @@ duration = 2503
 reindeer = {}
 
 # Load the puzzle data
-with open('src/day14.txt') as f:
+with open('txt/day14.txt') as f:
     # Vixen can fly 19 km/s for 7 seconds, but then must rest for 124 seconds.
     for line in f:
         words = line.split()  

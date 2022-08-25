@@ -107,7 +107,7 @@ def check_val_part_2 (key, val):
 
 # Load the puzzle data
 ing = [] #ingredients
-with open('src/day16.txt') as f:
+with open('txt/day16.txt') as f:
     #Sample line: "Sue 10: perfumes: 5, pomeranians: 4, children: 9"
     for line in f:
         split = line.find(':')
