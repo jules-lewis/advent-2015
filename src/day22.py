@@ -145,30 +145,114 @@ and still win the fight? (Do not include mana recharge effects as "spending"
 negative mana.)
 
 ------------------------------------------------------------------------------
+NOTES
+------------------------------------------------------------------------------
+
+- If armor (from a spell) would reduce damage below 1, it becomes 1 instead.
+  That is, the boss' attacks always deal at least 1 damage.
+
+- On each of your turns, you MUST select one of your spells to cast.
+
+- If you cannot afford to cast any spell, you lose. 
+
+- You must have enough mana to cast a spell, and its cost is immediately 
+  deducted when you cast it.
+
+- You cannot cast a spell that would start an effect which is already active. 
+  However, effects can be started on the same turn they end.
+
+------------------------------------------------------------------------------
 PART 2
 ------------------------------------------------------------------------------
 
+On the next run through the game, you increase the difficulty to hard.
+
+At the start of each player turn (before any other effects apply), you lose 
+1 hit point. If this brings you to or below 0 hit points, you lose.
+
+With the same starting stats for you and the boss, what is the least amount 
+of mana you can spend and still win the fight?
 
 '''
 
 import time
+from copy import deepcopy
 
 #Timing: Start
 start = time.perf_counter()
 
-START_MANA = 500
+PLAYER_MANA = 500
 PLAYER_HP = 50
 BOSS_HP = 58
 BOSS_DAM = 9
+MAX_MANA = 9999999
 
-#Spec:      cost, damage, heal, armour boost, duration, mana boost
-spells = [ (53,   4,      0,    0,            0,        0), #Magic missile
-           (73,   2,      2,    0,            0,        0), #Drain
-           (113,  0,      0,    7,            6,        0), #Shield
-           (173,  3,      0,    0,            6,        0), #Poison
-           (229,  0,      0,    0,            5,      101)]  #Recharge
+#Spec:    cost, dam, heal, armour boost, duration, mana boost
+spells = [(53,  4,   0,    0,            0,        0),    #Magic missile
+          (73,  2,   2,    0,            0,        0),    #Drain
+          (113, 0,   0,    7,            6,        0),    #Shield
+          (173, 3,   0,    0,            6,        0),    #Poison
+          (229, 0,   0,    0,            5,      101)]    #Recharge
 
-print(spells)
+def play(boss_hp, player_hp, player_mana, active_spells, player_turn, mana_used, part):
+
+    #In Part 2,  it costs 1hp to play each round    
+    if (part == 2) and player_turn:
+        player_hp -= 1
+        if player_hp < 1: return False
+            
+    player_armour = 0
+    new_spells = []
+    for spell in active_spells:
+        if spell[4] >= 0: # spell effect applies now
+            boss_hp -= spell[1]
+            player_hp += spell[2]
+            player_armour += spell[3]
+            player_mana += spell[5]
+
+        new_duration = spell[4] - 1
+        if new_duration > 0:
+            new = (spell[0], spell[1], spell[2], spell[3], new_duration, spell[5])
+            new_spells.append(new)
+    
+    if boss_hp <= 0:
+        global least_mana
+        least_mana = min(least_mana, mana_used)
+        return True
+
+    #Don't follow paths that already cost too much!
+    if mana_used >= least_mana:
+        return False
+
+    if player_turn:
+        for spell in spells:
+            spell_already_active = False
+            for comp_spell in new_spells:
+                if comp_spell[0] == spell[0]:
+                    spell_already_active = True
+                    break
+
+            if not spell_already_active:
+                spell_cost = spell[0]
+                if spell_cost <= player_mana:
+                    spell_stack = deepcopy(new_spells)
+                    spell_stack.append(spell)
+                    play(boss_hp, player_hp, player_mana - spell_cost, 
+                         spell_stack, False, mana_used + spell_cost, part)
+    else:
+        net_damage = BOSS_DAM - player_armour
+        net_damage = max(1, net_damage)
+        player_hp -= net_damage
+        if player_hp > 0:
+            play(boss_hp, player_hp, player_mana, new_spells, True, mana_used, part)
+
+least_mana = MAX_MANA
+play(BOSS_HP, PLAYER_HP, PLAYER_MANA, [], True, 0, 1)
+print(least_mana)
+
+least_mana = MAX_MANA
+play(BOSS_HP, PLAYER_HP, PLAYER_MANA, [], True, 0, 2)
+print(least_mana)
 
 #Timing: End
 end = time.perf_counter()
