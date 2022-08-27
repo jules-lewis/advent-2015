@@ -92,7 +92,7 @@ start = time.perf_counter()
 replacements = []
 medicine = None
 
-for line in open("src/day19.txt"):
+for line in open("txt/day19.txt"):
     parts = line.strip().split(" => ")
     if len(parts) == 1:
         if not line.strip():
