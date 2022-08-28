@@ -66,20 +66,80 @@ ideal configuration?
 PART 2
 ------------------------------------------------------------------------------
 
+That's weird... the sleigh still isn't balancing.
 
+"Ho ho ho", Santa muses to himself. "I forgot the trunk".
+
+Balance the sleigh again, but this time, separate the packages into four 
+groups instead of three. The other constraints still apply.
+
+Given the example packages above, this would be some of the new unique first 
+groups, their quantum entanglements, and one way to divide the remaining 
+packages:
+
+11 4    (QE=44); 10 5;   9 3 2 1; 8 7
+10 5    (QE=50); 11 4;   9 3 2 1; 8 7
+9 5 1   (QE=45); 11 4;   10 3 2;  8 7
+9 4 2   (QE=72); 11 3 1; 10 5;    8 7
+9 3 2 1 (QE=54); 11 4;   10 5;    8 7
+8 7     (QE=56); 11 4;   10 5;    9 3 2 1
+
+Of these, there are three arrangements that put the minimum (two) number 
+of packages in the first group: 11 4, 10 5, and 8 7. Of these, 11 4 has 
+the lowest quantum entanglement, and so it is selected.
+
+Now, what is the quantum entanglement of the first group of packages in the 
+ideal configuration?
 
 '''
 
 import time
+from itertools import combinations
+from functools import reduce
+from operator import mul
+
+value = reduce(mul, [1,2,3,4,5])
+
 
 #Timing: Start
 start = time.perf_counter()
 
+#Load the data
 with open("txt/day24.txt") as f:
     parcels = [int(line.strip()) for line in f.readlines()]
-print(parcels)
-print(sum(parcels))
-print(sum(parcels)//3)
+total_weight = sum(parcels)
+compartment_weight = total_weight // 3
+
+'''
+This solves either part, by using the passed parameter as thenumber of 
+compartments in Santa's sleigh. There is a HUGE assumption here: that 
+if you can find combinations of parcels that add up to the desired 
+weight, then the remaining parcels can be divided evenly to fill the 
+rest of the sleigh. In other words, once we've found a set of parcel
+combinations that meet the 'first group' in the puzzle, we stop looking.
+Obviously this wouldn't work in real life, and depends on an aspect that
+makes puzzles 'easier' than production code, i.e. KNOWING there is a
+solution.
+'''
+def solve(compartment_count):
+
+    compartment_weight = total_weight // compartment_count
+    parcel_sets = []
+    for n in range(3, len(parcels)):
+        combination_works = False
+        for combination in combinations(parcels, n):
+            if sum(combination) == compartment_weight:
+                combination_works = True
+                parcel_sets.append(reduce(mul, combination))
+        if combination_works:
+            break
+    return(min(parcel_sets))
+
+#Part 1
+print(solve(3))
+
+#Part 2
+print(solve(4))
 
 #Timing: End
 end = time.perf_counter()
