@@ -45,6 +45,11 @@ input is finished executing?
 PART 2
 ------------------------------------------------------------------------------
 
+The unknown benefactor is very thankful for releasi-- er, helping little Jane 
+Marie with her computer. Definitely not to distract you, what is the value 
+in register b after the program is finished executing if register a starts as 
+1 instead?
+
 
 '''
 
@@ -56,7 +61,8 @@ start = time.perf_counter()
 with open("txt/day23.txt") as f:
     program = [line.strip().replace(',', '').split() for line in f.readlines()]
 
-reg_a = reg_b = 0
+reg_a = 1
+reg_b = 0
 index = 0
 cont = True
 top_bound = len(program)
