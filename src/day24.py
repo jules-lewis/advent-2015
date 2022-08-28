@@ -98,9 +98,6 @@ from itertools import combinations
 from functools import reduce
 from operator import mul
 
-value = reduce(mul, [1,2,3,4,5])
-
-
 #Timing: Start
 start = time.perf_counter()
 
