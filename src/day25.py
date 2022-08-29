@@ -113,7 +113,6 @@ Now we go along the columns, stepping up in the same way
 increment = row + 1
 for col in range(2, 3083+1):
     code += increment
-    #print(col, code)
     increment += 1
 
 prev = 20151125
