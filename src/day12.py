@@ -48,10 +48,10 @@ import json
 start = time.perf_counter()
 
 with open('txt/day12.txt') as f:
-    data = f.read()
+    data = json.loads(f.read())
 
 #Part 1
-print(sum(int(i) for i in re.findall(r'-?\d+', data)))
+print(sum(int(i) for i in re.findall(r'-?\d+', str(data))))
 
 #Part 2
 def sum_numbers(node):
@@ -74,8 +74,8 @@ def sum_numbers(node):
 
         return 0
 
-j = json.loads(data)
-print(sum_numbers(j))
+print(sum_numbers(data))
+
 
 #Timing: End
 end = time.perf_counter()
