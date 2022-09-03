@@ -52,9 +52,6 @@ they started.
 ^v^v^v^v^v now delivers presents to 11 houses, with Santa going one direction and 
 Robo-Santa going the other.
 
-
-
-
 '''
 
 import time
