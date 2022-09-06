@@ -54,7 +54,7 @@ def solve(key, zeroes):
 print(solve('yzbqklnj', 5))
 
 #Part 2
-#print(solve('yzbqklnj', 6))
+print(solve('yzbqklnj', 6))
 
 #Timing: End
 end = time.perf_counter()
