@@ -15,4 +15,5 @@ My efforts to get through the entire Advent of Code puzzle series, starting from
 | 10  | [:page_with_curl:](https://dev.to/jules_lewis/aoc-2015-day-10-i-give-in-to-regex-28do) | [:memo:](https://www.reddit.com/r/adventofcode/comments/3w6h3m/day_10_solutions/) |
 | 11  | [:page_with_curl:](https://dev.to/jules_lewis/aoc-2015-day-11-a-little-more-regex-ih0) | [:memo:](https://www.reddit.com/r/adventofcode/comments/3wbzyv/day_11_solutions/) |
 | 12  | [:page_with_curl:](https://dev.to/jules_lewis/aoc-2015-day-12-more-regex-462o)         | [:memo:](https://www.reddit.com/r/adventofcode/comments/3wh73d/day_12_solutions/) |
+| 13  | [:page_with_curl:](https://dev.to/jules_lewis/aoc-2015-day-13-permutate-114)           | [:memo:](https://www.reddit.com/r/adventofcode/comments/3wm0oy/day_13_solutions/) |
 
