@@ -86,17 +86,11 @@ with open('txt/day13.txt') as f:
     for line in f:
         line = line.replace('lose ', '-').replace('gain ', '')[:-2]
         words = line.split()        
-        p1 = words[0]
-        p2 = words[-1]
-        h = words[2]
-        happiness[(p1, p2)] = int(h)
-        people.append(p1)
-
+        happiness[(words[0], words[-1])] = int(words[2])
+        people.append(words[0])
 people = list(set(people))
-perms = list(permutations(people))
 
 def get_max_happiness(perms):
-
     max_happiness = 0
     for perm in perms:
         this_happiness = 0
@@ -105,20 +99,18 @@ def get_max_happiness(perms):
             this_happiness += happiness[(perm[person + 1], perm[person])]
         this_happiness += happiness[(perm[-1], perm[0])]
         this_happiness += happiness[(perm[0], perm[-1])]
-
         max_happiness = max( max_happiness, this_happiness)
     return max_happiness
 
 #Part 1
-print(get_max_happiness(perms))
+print(get_max_happiness(permutations(people)))
 
 #Part 2
 for person in people:
     happiness[(person, 'me')] = 0
     happiness[('me', person)] = 0
 people.append('me')
-perms = list(permutations(people))
-print(get_max_happiness(perms))
+print(get_max_happiness(permutations(people)))
 
 #Timing: End
 end = time.perf_counter()
